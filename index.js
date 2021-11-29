@@ -31,7 +31,7 @@ const promptUser = () => {
       }
     },
   ])
-}
+};
 
 const promptReadme = () => {
     return inquirer.prompt([
@@ -66,6 +66,19 @@ const promptReadme = () => {
           name: 'languages',
           message: 'What did you build this project with? (Check all that apply)',
           choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
+        },
+        {
+          type: 'input',
+          name: 'usage',
+          message: 'Please give describe the usage for this project. (Required)',
+          validate: usageInput => {
+            if (usageInput) {
+              return true;
+            } else {
+              console.log('Please enter usage or N/A!');
+              return false;
+            }
+          }
         },
     ])
 };
