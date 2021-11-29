@@ -1,5 +1,5 @@
-const fs = require('fs');
-const generatePage = required('./readme-template.js');
+// const fs = require('fs');
+// const generatePage = required('./readme-template.js');
 const inquirer = require('inquirer');
 
 const promptUser = () => {
@@ -52,8 +52,8 @@ const promptReadme = () => {
           type: 'input',
           name: 'description',
           message: 'Please give a brief description of the project. (Required)',
-          validate: decsriptionInput => {
-            if (descriptionInput) {
+          validate: projectDescriptionInput => {
+            if (projectDescriptionInput) {
               return true;
             } else {
               console.log('Please enter project description!');
@@ -68,4 +68,7 @@ const promptReadme = () => {
           choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
         },
     ])
-}
+};
+
+promptUser()
+.then(promptReadme)
