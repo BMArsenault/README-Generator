@@ -70,42 +70,48 @@ const userInput = ({
   test,
 }) => {
   const templateData = `
-    # ${title}
+# ${title}
 
-    ## Description
-    ${description}
+## Description
 
-    ## Table of Contents
-    - [Installation](##installation)
-    - [Usage](##usage)
-    - [License](##license)
-    - [Contributing](##contributing)
-    - [Tests](##tests)
-    - [Questions](##questions)
+${description}
 
-    ## Installation
-    ${installation}
+## Table of Contents
+- [Installation](##installation)
+- [Usage](##usage)
+- [License](##license)
+- [Contributing](##contributing)
+- [Tests](##tests)
+- [Questions](##questions)
 
-    ## Usage
-    ${usage}
+## Installation
 
-    ## License
-    ${license}
+${installation}
 
-    ## Contributing
-    ${contributing}
+## Usage
 
-    ## Tests
-    ${test}
+${usage}
 
-    ## Questions
+## License
+
+${license}
+
+## Contributing
+
+${contributing}
+
+## Tests
+
+${test}
+
+## Questions
     
-    If you have any questions, please feel free to send me an email with additional questions:  ${email}
+If you have any questions, please feel free to send me an email with additional questions:  ${email}
 
-    Github Link: ${'https://www.github.com/' + link}
-    `;
+Github Link: ${'https://www.github.com/' + link}
+`;
   // TODO: Create a function to write README file
-  fs.writeFile("README.md", templateData, err => {
+  fs.writeFile('./README.md', templateData, "utf8", err => {
     if (err) throw new Error(err);
       console.log('Readme created!  Check out readme.md in this directory to see it!');
   });
