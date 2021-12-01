@@ -1,7 +1,7 @@
 module.exports = templateData => {
     // change all ${Input} to appropriate
     return `
-    # ${project}
+    # ${title}
 
     ## Description
     ${description}
@@ -32,7 +32,7 @@ module.exports = templateData => {
     ## Questions
     
     If you have any questions, please feel free to send me an email with additional questions:  ${email}
-    
+
     Github Link: ${'https://www.github.com/' + link}
     `;
 };

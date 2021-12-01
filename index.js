@@ -1,11 +1,11 @@
 const fs = require('fs');
-const generatePage = require('./readme-template');
+// const generatePage = require('./readme-template');
 const inquirer = require('inquirer');
 
 // Create questions for user
 
 const promptUser = () => {
-  return inquirer.prompt([
+  inquirer.prompt([
     {
       type: 'input',
       name: 'email',
@@ -18,7 +18,7 @@ const promptUser = () => {
     },
     {
       type: 'input',
-      name: 'project',
+      name: 'title',
       message: 'What is the name of your project?',
     },
     {
@@ -51,19 +51,68 @@ const promptUser = () => {
       name: 'test',
       message: 'Please provide tests for this project and how to run them.',
     },
-  ]);
+  ])
+  .then(answers => {
+    userInput(answers);
+  });
 };
 
 
+const userInput = ({
+  email,
+  link,
+  title,
+  description,
+  installation,
+  usage,
+  license,
+  contributing,
+  test,
+}) => {
+  const templateData = `
+    # ${title}
 
-promptUser()
+    ## Description
+    ${description}
 
-// // TODO: Create a function to write README file
-// return fs.writeFile('./README.md', templateData, err => {
-//   if (err) throw new Error(err);
-//     console.log('Readme created!  Check out readme.md in this directory to see it!');
-// });
+    ## Table of Contents
+    - [Installation](##installation)
+    - [Usage](##usage)
+    - [License](##license)
+    - [Contributing](##contributing)
+    - [Tests](##tests)
+    - [Questions](##questions)
 
+    ## Installation
+    ${installation}
+
+    ## Usage
+    ${usage}
+
+    ## License
+    ${license}
+
+    ## Contributing
+    ${contributing}
+
+    ## Tests
+    ${test}
+
+    ## Questions
+    
+    If you have any questions, please feel free to send me an email with additional questions:  ${email}
+
+    Github Link: ${'https://www.github.com/' + link}
+    `;
+  // TODO: Create a function to write README file
+  fs.writeFile("README.md", templateData, err => {
+    if (err) throw new Error(err);
+      console.log('Readme created!  Check out readme.md in this directory to see it!');
+  });
+};
+
+
+promptUser();
 // TODO: Create a function to initialize app
 // function init() {}
 
