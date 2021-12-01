@@ -1,10 +1,10 @@
 module.exports = templateData => {
     // change all ${Input} to appropriate
     return `
-    # ${projectInput}
+    # ${project}
 
     ## Description
-    ${descriptionInput}
+    ${description}
 
     ## Table of Contents
     - [Installation](##installation)
@@ -15,24 +15,24 @@ module.exports = templateData => {
     - [Questions](##questions)
 
     ## Installation
-    ${installationInput}
+    ${installation}
 
     ## Usage
-    ${usageInput}
+    ${usage}
 
     ## License
-
+    ${license}
 
     ## Contributing
-    ${contributingInput}
+    ${contributing}
 
     ## Tests
-    ${testInput}
+    ${test}
 
     ## Questions
     
-    Github Link: ${'https://www.github.com/' + githubInput}
-
-    If you have any questions, please feel free to send me an email with additional questions:  ${emailInput}
+    If you have any questions, please feel free to send me an email with additional questions:  ${email}
+    
+    Github Link: ${'https://www.github.com/' + link}
     `;
 };
