@@ -1,87 +1,75 @@
-// const fs = require('fs');
-// const generatePage = required('./readme-template.js');
+const fs = require('fs');
+const generatePage = required('./readme-template.js');
 const inquirer = require('inquirer');
 
-const promptUser = () => {
-  return inquirer.prompt([
-    {
-      type: 'input',
-      name: 'link',
-      message: 'Please provide a link to your Github project. (Required)',
-      validate: githubInput => {
-        if (githubInput) {
-          return true;
-        } else {
-          console.log('Please enter your Github link!');
-          return false;
-        }
-      }
-    },
-    {
-      type: 'input',
-      name: 'email',
-      message: 'Please enter your email address. (Required)',
-      validate: emailInput => {
-        if (emailInput) {
-          return true;
-        } else {
-          console.log('Please enter your email address!');
-          return false;
-        }
-      }
-    },
-  ])
-};
 
-const promptReadme = () => {
-    return inquirer.prompt([
-        {
-            type: 'input',
-            name: 'project',
-            message: 'What is the name of your project? (Required)',
-            validate: projectInput => {
-              if (projectInput) {
-                return true;
-              } else {
-                console.log('Please provide project name!');
-                return false;
-              }
-            }
-        },
-        {
-          type: 'input',
-          name: 'description',
-          message: 'Please give a brief description of the project. (Required)',
-          validate: projectDescriptionInput => {
-            if (projectDescriptionInput) {
-              return true;
-            } else {
-              console.log('Please enter project description!');
-              return false;
-            }
-          }
-        },
-        {
-          type: 'checkbox',
-          name: 'languages',
-          message: 'What did you build this project with? (Check all that apply)',
-          choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
-        },
-        {
-          type: 'input',
-          name: 'usage',
-          message: 'Please give describe the usage for this project. (Required)',
-          validate: usageInput => {
-            if (usageInput) {
-              return true;
-            } else {
-              console.log('Please enter usage or N/A!');
-              return false;
-            }
-          }
-        },
-    ])
-};
+// Create questions for user
+
+const questions = [
+  {
+    type: 'input',
+    name: 'email',
+    message: 'Please enter your email address. (Required)',
+  },
+  {
+    type: 'input',
+    name: 'link',
+    message: 'Please provide a link to your Github project. (Required)',
+  },
+  {
+    type: 'input',
+    name: 'project',
+    message: 'What is the name of your project? (Required)',
+  },
+  {
+    type: 'input',
+    name: 'description',
+    message: 'Please give a brief description of the project. (Required)',
+  },
+  {
+    type: 'input',
+    name: 'installation',
+    message: 'Please provide commands for installations on this project. (Required)',
+  },
+      // {
+      //   type: 'checkbox',
+      //   name: 'languages',
+      //   message: 'What did you build this project with? (Check all that apply)',
+      //   choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
+      // },
+  {
+    type: 'input',
+    name: 'usage',
+    message: 'Please describe the usage for this project. (Required)',
+  },
+  {
+    type: 'input',
+    name: 'license',
+    message: 'Please list any licenses needed for this project. (Required)',
+  },
+  {
+    type: 'input',
+    name: 'contributing',
+    message: 'Please explain how others could contribute on this project. (Required)',
+  },
+  {
+    type: 'input',
+    name: 'test',
+    message: 'Please provide tests for this project. (Required)',
+  },
+]
 
 promptUser()
 .then(promptReadme)
+
+// TODO: Create a function to write README file
+fs.writeFile('./README.md', data, err => {
+  if (err) throw new Error(err);
+  console.log('Readme created!  Check out readme.md in this directory to see it!');
+});
+
+// TODO: Create a function to initialize app
+// function init() {}
+
+// Function call to initialize app
+// init();
