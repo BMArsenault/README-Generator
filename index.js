@@ -58,23 +58,30 @@ const promptUser = () => {
   });
 };
 
-// const getBadge = (license) => {
-//   let licenseType = license;
-//   let yourLicense = ''
-//   if(licenseType === 'MIT') {
-//     yourLicense = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
-//   } else if (licenseType === 'BSD') {
-//     yourLicense = '[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)'
-//   } else if (licenseType === 'Apache 2.0') {
-//     yourLicense = '[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'
-//   } else if (licenseType === 'IBM') {
-//     yourLicense = '[![License: IPL 1.0](https://img.shields.io/badge/License-IPL_1.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)'
-//   } else {
-//     yourLicense = 'N/A';
-//   };
-// };
+// Create a badge for chosen license
+
+const renderBadge = license => {
+  let licenseType;
+  if(!license) {
+    licenseType = "";
+  }
+  else if (license[0] === 'MIT') {
+    licenseType = '![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)'
+  }
+  else if (license[0] === 'BSD') {
+    licenseType = '![BSD](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)'
+  }
+  else if (license[0] === 'Apache 2.0') {
+    licenseType = '![Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)'
+  }
+  else if (license[0] === 'IBM') {
+    licenseType = '![IPL 1.0](https://img.shields.io/badge/License-IPL_1.0-blue.svg)'
+  };
+  return licenseType;
+};
 
 
+// create function based off user answers and put them into Readme File
 const userInput = ({
   title,
   description,
@@ -90,7 +97,8 @@ const userInput = ({
 # ${title}
 
 ## Description
-${licenseType}
+${renderBadge(license)} <br />
+
 ${description}
 
 ## Table of Contents
@@ -134,19 +142,9 @@ Github Link: ${'https://www.github.com/' + link}
   });
 };
 
-
 promptUser();
 // TODO: Create a function to initialize app
 // function init() {}
 
 // Function call to initialize app
 // init();
-
-// badges
-// MIT    [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-//Apache 2.0  [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
-// BSD  [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-
-// IBM  [![License: IPL 1.0](https://img.shields.io/badge/License-IPL_1.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)
