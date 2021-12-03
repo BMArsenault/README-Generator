@@ -8,16 +8,6 @@ const promptUser = () => {
   inquirer.prompt([
     {
       type: 'input',
-      name: 'email',
-      message: 'Please enter your email address.',
-    },
-    {
-      type: 'input',
-      name: 'link',
-      message: 'Please provide a link to your Github username.',
-    },
-    {
-      type: 'input',
       name: 'title',
       message: 'What is the name of your project?',
     },
@@ -37,9 +27,10 @@ const promptUser = () => {
       message: 'Please provide instructions for project usage.',
     },
     {
-      type: 'input',
+      type: 'checkbox',
       name: 'license',
-      message: 'Please list any licenses needed for this project.',
+      message: 'Please select the license you would like for this project.',
+      choices: ['MIT', 'BSD', 'Apache 2.0', 'IBM']
     },
     {
       type: 'input',
@@ -51,16 +42,40 @@ const promptUser = () => {
       name: 'test',
       message: 'Please provide tests for this project and how to run them.',
     },
+    {
+      type: 'input',
+      name: 'email',
+      message: 'Please enter your email address.',
+    },
+    {
+      type: 'input',
+      name: 'link',
+      message: 'Please provide a link to your Github username.',
+    },
   ])
   .then(answers => {
     userInput(answers);
   });
 };
 
+// const getBadge = (license) => {
+//   let licenseType = license;
+//   let yourLicense = ''
+//   if(licenseType === 'MIT') {
+//     yourLicense = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
+//   } else if (licenseType === 'BSD') {
+//     yourLicense = '[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)'
+//   } else if (licenseType === 'Apache 2.0') {
+//     yourLicense = '[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'
+//   } else if (licenseType === 'IBM') {
+//     yourLicense = '[![License: IPL 1.0](https://img.shields.io/badge/License-IPL_1.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)'
+//   } else {
+//     yourLicense = 'N/A';
+//   };
+// };
+
 
 const userInput = ({
-  email,
-  link,
   title,
   description,
   installation,
@@ -68,12 +83,14 @@ const userInput = ({
   license,
   contributing,
   test,
+  email,
+  link,
 }) => {
   const templateData = `
 # ${title}
 
 ## Description
-
+${licenseType}
 ${description}
 
 ## Table of Contents
@@ -124,3 +141,12 @@ promptUser();
 
 // Function call to initialize app
 // init();
+
+// badges
+// MIT    [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+//Apache 2.0  [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+// BSD  [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
+// IBM  [![License: IPL 1.0](https://img.shields.io/badge/License-IPL_1.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)
