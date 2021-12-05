@@ -131,7 +131,7 @@ ${test}
 
 ## Questions
     
-If you have any questions, please feel free to send me an email with additional questions:  ${email}
+If you have any additional questions, please feel free to send me an email:  ${email}
 
 Github Link: ${'https://www.github.com/' + link}
 `;
